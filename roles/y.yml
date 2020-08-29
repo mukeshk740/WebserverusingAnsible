@@ -1,0 +1,8 @@
+- hosts: localhost
+  roles:
+   - role: ec2provisioning
+  tags: provisioning
+- hosts: all
+  roles:
+   - role: inst_httpd
+  tags: install_httpd

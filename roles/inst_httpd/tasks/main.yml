@@ -1,0 +1,27 @@
+---
+# tasks file for inst_httpd
+  - name: installing httpd
+    package:
+      name: "httpd"
+      state: present
+    register: x
+  - name: copying Mukesh directory to /var/www/mukesh
+    copy:
+      src: /etc/ansible/roles/inst_httpd/files/mukesh
+      dest: /var/www/
+      mode: 0755
+  - name: copying mukesh.conf to /etc/httpd/conf.d/
+    template:
+        src: /etc/ansible/roles/inst_httpd/templates/mukesh.conf
+        dest: /etc/httpd/conf.d/
+        mode: 0644
+  - name: Copying  httpd.conf /etc/httpd/conf/httpd.conf       
+    copy:
+        src: /etc/ansible/roles/inst_httpd/files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+
+  - name: restarting httpd service
+    service:
+       name: httpd
+       state: restarted
+

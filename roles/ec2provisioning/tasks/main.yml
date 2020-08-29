@@ -1,0 +1,18 @@
+    - name: Provisioning RedHat machine on AWS
+      ec2:
+        key_name: "devopskey"
+        instance_type: t2.micro
+        image: "ami-052c08d70def0ac62"
+        wait: yes
+        count: 1
+        instance_tags:
+                Name: "Webserver"
+        vpc_subnet_id: "subnet-e1202d89"
+        group_id: "sg-f0931c94"
+        assign_public_ip: yes
+        region: "ap-south-1"
+        state: present
+        aws_access_key: "{{ myuser }}"
+        aws_secret_key: "{{ mypass }}"
+
+
